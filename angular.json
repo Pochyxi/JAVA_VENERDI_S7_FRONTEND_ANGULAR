@@ -98,10 +98,13 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.js"]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "426e7932-7dbc-47e8-90d1-6d7894cfb61d"
   }
 }
