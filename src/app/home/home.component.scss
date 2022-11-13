@@ -1,0 +1,52 @@
+.home {
+  background-color: rgba(0, 0, 0, 0.794);
+  min-height: 100vh;
+
+  .noSonde{
+    min-height: 20vh;
+  }
+
+  .listeContainer {
+    margin-top: 20px;
+    background-image: linear-gradient(to bottom, rgba(115, 0, 255, 0.2), rgba(0, 0, 255, 0.29));
+    border-top: 10px outset violet;
+    box-shadow: 0 0 20px violet;
+
+    .containerLista1 {
+      width: 40%;
+    }
+
+    .containerLista2 {
+      width: 40%;
+    }
+  }
+
+  .separetorList {
+    height: 100vh;
+    width: 10px;
+    background-color: violet;
+    box-shadow: 0 0 20px violet;
+  }
+
+    .lista1item {
+      margin-top: 5px;
+      border-left: 5px solid blueviolet;
+      box-shadow: 0 0 10px #7300ff;
+
+      .smokeLevel1 {
+        box-shadow: 0 0 10px rgba(17, 255, 0, 0.67);
+      }
+
+      .smokeLevel2 {
+        box-shadow: 0 0 10px rgba(0, 81, 255, 0.67);
+      }
+
+      .smokeLevel3 {
+        box-shadow: 0 0 10px rgba(224, 6, 55, 0.67);
+      }
+    }
+
+  .boldText{
+    font-weight: bold;
+  }
+}

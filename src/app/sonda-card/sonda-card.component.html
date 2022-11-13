@@ -1,0 +1,9 @@
+<div [class]="detSondaBorder()">
+  <div class="card-body text-center ">
+    <h5 class="text-uccess sondaName">{{ sonda.nomeSonda }}</h5>
+    <p class="card-text"><span class="fw-bolder">Longitudine</span>: {{ sonda.longitudine }}</p>
+    <p class="card-text"><span class="fw-bolder">Latitudine</span>: {{ sonda.latitudine }}</p>
+    <p class="card-text"><span class="fw-bolder text-primary">Misurazioni</span>: {{ numeroMisurazioniSonda }}</p>
+    <p class="card-text"><span class="fw-bolder text-danger">Allerte</span>: {{ numeroMisurazioniSondaAlte }}</p>
+  </div>
+</div>

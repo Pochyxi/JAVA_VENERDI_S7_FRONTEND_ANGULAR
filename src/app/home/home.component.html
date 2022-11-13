@@ -1,0 +1,66 @@
+<div class="home p-3" >
+  <h1 class="text-center text-light">LISTA SONDE</h1>
+  <div class="text-light text-center noSonde" *ngIf="!arrOfSonde">
+    Nessuna sonda trovata
+  </div>
+  <div class="d-flex flex-wrap justify-content-start" *ngIf="arrOfSonde">
+    <app-sonda-card
+      *ngFor="let sonda of arrOfSonde"
+      [sonda]="sonda"
+      [idUltimaAllerta]="idUltimaAllerta"
+      (shotId)="postMisurazione($event, randomSmoke())"
+    ></app-sonda-card>
+
+  </div>
+  <h1 *ngIf="arrOfSonde" class="text-center text-light">STATISTICHE</h1>
+  <div *ngIf="arrOfSonde" class="listeContainer d-flex p-3 justify-content-evenly">
+    <div class="containerLista1">
+      <ul class="list-group">
+        <h2 class="text-center text-light">Ultime 50 misurazioni</h2>
+        <li *ngFor="let mis of misurazioni" class="list-group-item lista1item">
+          <div class="d-flex justify-content-between">
+              <div>
+                <span class="boldText">
+                  Numero misurazione
+                </span>: {{ mis.id }}
+              </div>
+            <div>
+              <span [class]="detSmokeColor(mis.smokeLevel)">
+              {{ mis.smokeLevel }}
+            </span>
+            </div>
+
+          </div>
+          <div class="d-block">
+            <span class="boldText">
+              Sonda
+            </span>: {{ mis.sonda.nomeSonda }}
+          </div>
+          <div class="d-block"><span class="boldText">LAT</span>: {{ mis.sonda.latitudine}}</div>
+          <span class="boldText">LONG</span>: {{ mis.sonda.longitudine}}
+        </li>
+      </ul>
+    </div>
+    <div class="separetorList">
+
+    </div>
+    <div class="containerLista2">
+      <ul class="list-group">
+        <h2 class="text-center text-light">Ultime 50 allerte</h2>
+        <li *ngFor="let mis of misurazioniAlte" class="list-group-item lista1item">
+          <div class="d-flex justify-content-between">
+            <div><span class="boldText">Numero misurazione</span>: {{ mis.id }}</div>
+            <span [class]="detSmokeColor(mis.smokeLevel)">{{ mis.smokeLevel }}</span>
+          </div>
+          <div class="d-block">
+            <span class="boldText">Sonda</span>: {{ mis.sonda.nomeSonda }}
+          </div>
+          <div class="d-block"><span class="boldText">LAT</span>: {{ mis.sonda.latitudine}}</div>
+          <span class="boldText">LONG</span>: {{ mis.sonda.longitudine}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
