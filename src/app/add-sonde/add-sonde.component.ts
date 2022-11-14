@@ -13,6 +13,7 @@ export class AddSondeComponent implements OnInit {
   form!: FormGroup;
   hide = true;
   errorFlag = false;
+  spanFlag: boolean = false;
 
   constructor(
     private backEnd$: BackEndService,
@@ -25,7 +26,36 @@ export class AddSondeComponent implements OnInit {
         Validators.minLength(4),
         Validators.maxLength(15)
       ]],
+      username: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(15)
+      ]],
       password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(15),
+        ],
+      ],
+      conferma: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(20),
+        ],
+      ],
+      latitudine: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(15),
+        ],
+      ],
+      longitudine: [
         '',
         [
           Validators.required,
@@ -38,11 +68,20 @@ export class AddSondeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  login() {
+  registra() {
     if (!this.form.valid) {
       console.log('not valid');
     } else {
-
+      this.backEnd$.postSonda(
+        this.getFormControl('nomeSonda')?.value,
+        this.getFormControl('username')?.value,
+        this.getFormControl('password')?.value,
+        this.getFormControl('latitudine')?.value,
+        this.getFormControl('longitudine')?.value,
+      ).then(r => {
+        console.log(r)
+        this.router.navigate(['/'])
+      })
       console.log(this.form.value);
     }
   }
@@ -58,13 +97,21 @@ export class AddSondeComponent implements OnInit {
     return '';
   }
 
-  getEmailError() {
-    if (this.getFormControl('email')?.hasError('required')) {
-      return 'Questo campo deve essere compilato';
+  getPassError() {
+    if (this.getFormControl('conferma')?.hasError('required')) {
+      return 'Il campo non può essere vuoto';
     }
-    return this.getFormControl('email')?.hasError('email')
-      ? 'Email non valida'
-      : '';
+    return '';
+  }
+
+  getSpanError() {
+    if (
+      this.getFormControl('conferma')?.value ===
+      this.getFormControl('password')?.value
+    ) {
+      return '';
+    }
+    return 'Le password non corrispondono';
   }
 
 }

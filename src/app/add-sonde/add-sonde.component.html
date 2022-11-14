@@ -1,6 +1,7 @@
 <div class="addSonde">
-  <form [formGroup]="form" (ngSubmit)="login()">
-    <mat-form-field class="w-100" appearance="fill">
+  <h2 class="text-light text-center">REGISTRA UNA NUOVA SONDA</h2>
+  <form class="form" [formGroup]="form" (ngSubmit)="registra()">
+    <mat-form-field class="w-50 mx-auto d-block matInput" appearance="fill">
       <mat-label class="text-light">Nome Sonda</mat-label>
       <input
         class="text-light"
@@ -8,10 +9,21 @@
         formControlName="nomeSonda"
         required
       />
-      <mat-error>{{ getEmailError() }}</mat-error>
+      <mat-error>{{ getErrorMessage("nomeSonda") }}</mat-error>
     </mat-form-field>
     <br />
-    <mat-form-field class="w-100" appearance="fill">
+    <mat-form-field class="w-50 mx-auto d-block matInput" appearance="fill">
+      <mat-label class="text-light">Username</mat-label>
+      <input
+        class="text-light"
+        matInput
+        formControlName="username"
+        required
+      />
+      <mat-error>{{ getErrorMessage("nomeSonda") }}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="w-50 mx-auto d-block matInput" appearance="fill">
       <mat-label class="text-light">Password</mat-label>
       <input
         matInput
@@ -20,8 +32,11 @@
         formControlName="password"
         required
       />
+      <br />
+
       <button
         mat-icon-button
+        [class]="!hide ? 'text-danger' : 'text-primary'"
         type="button"
         matSuffix
         (click)="hide = !hide"
@@ -30,8 +45,58 @@
       >
         <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
-      <mat-error>{{ getErrorMessage("password") }}</mat-error> </mat-form-field
-    ><br />
+      <mat-error>{{ getErrorMessage("password") }}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="w-50 mx-auto d-block matInput" appearance="fill">
+      <mat-label class="text-light">Conferma password</mat-label>
+      <input
+        matInput
+        class="text-light"
+        [type]="hide ? 'password' : 'text'"
+        formControlName="conferma"
+        required
+        (focusout)="spanFlag = true"
+      />
+      <button
+        mat-icon-button
+        [class]="!hide ? 'text-danger' : 'text-primary'"
+        type="button"
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error class="text-light">{{ getPassError() }}</mat-error>
+      <span class="spanError text-danger" *ngIf="spanFlag">{{ getSpanError() }}</span>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="w-50 mx-auto d-block matInput" appearance="fill">
+      <mat-label class="text-light">Latitudine</mat-label>
+      <input
+        class="text-light"
+        matInput
+        formControlName="latitudine"
+        type="number"
+        required
+      />
+      <mat-error>{{ getErrorMessage("latitudine") }}</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="w-50 mx-auto d-block matInput" appearance="fill">
+      <mat-label class="text-light">Longitudine</mat-label>
+      <input
+        class="text-light"
+        matInput
+        formControlName="longitudine"
+        type="number"
+        required
+      />
+      <mat-error>{{ getErrorMessage("longitudine") }}</mat-error>
+    </mat-form-field>
+    <br />
     <button mat-raised-button color="primary" class="mt-2 w-100" type="submit">
       Registra sonda
     </button>

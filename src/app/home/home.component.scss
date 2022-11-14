@@ -31,7 +31,10 @@
     .lista1item {
       margin-top: 5px;
       border-left: 5px solid blueviolet;
-      box-shadow: 0 0 10px #7300ff;
+      box-shadow: 0 0 10px violet;
+      background-color: rgba(75, 0, 130, 0.6);
+      color: gainsboro;
+      border-radius: 5px;
 
       .smokeLevel1 {
         box-shadow: 0 0 10px rgba(17, 255, 0, 0.67);

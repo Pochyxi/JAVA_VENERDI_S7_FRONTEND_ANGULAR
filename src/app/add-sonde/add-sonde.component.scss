@@ -1,4 +1,15 @@
 .addSonde {
   background-color: rgba(0, 0, 0, 0.794);
   min-height: 100vh;
+
+  .matInput {
+    background-color: rgba(75, 0, 130, 0.44);
+  }
+
+  .form {
+    background-image: linear-gradient(to bottom, rgba(115, 0, 255, 0.2), rgba(0, 0, 255, 0.29));
+    border-top: 10px outset violet;
+    box-shadow: 0 0 20px violet;
+    padding-top: 10px;
+  }
 }

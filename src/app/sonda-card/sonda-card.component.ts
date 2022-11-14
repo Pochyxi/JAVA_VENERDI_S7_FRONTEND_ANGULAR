@@ -64,4 +64,15 @@ export class SondaCardComponent implements OnInit {
       return 'card m-1 sondaBody baseBorder'
     }
   }
+
+  deleteSonda():void {
+    this.backend$.deleteSonda(this.sonda.id).then((r) => {
+      console.log(r);
+    });
+
+  }
+
+  ngOnDestroy():void {
+    clearInterval(this.misurazioneInterval);
+  }
 }

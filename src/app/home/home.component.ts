@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
       this.misurazioniAlte = r.data.sort((a: { id: number; }, b: { id: number; }) => a.id < b.id ? -1 : 1).filter( (el: { smokeLevel: number; }) => el.smokeLevel > 7).reverse().slice(0, 50);
 
       // ---------------------------------------------------- //
-      if(this.misurazioniAlte) {
+      if(this.misurazioniAlte.length > 0) {
         this.idUltimaAllerta = r.data.sort((a: { id: number; }, b: { id: number; }) => a.id < b.id ? -1 : 1).filter( (el: { smokeLevel: number; }) => el.smokeLevel > 7).reverse().slice(0, 50)[0].sonda.id
         console.log(this.idUltimaAllerta)
       }

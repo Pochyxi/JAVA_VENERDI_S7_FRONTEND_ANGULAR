@@ -1,5 +1,6 @@
 <div [class]="detSondaBorder()">
   <div class="card-body text-center ">
+      <button (click)="deleteSonda()" class="text-danger deleteSonda">X</button>
     <h5 class="text-uccess sondaName">{{ sonda.nomeSonda }}</h5>
     <p class="card-text"><span class="fw-bolder">Longitudine</span>: {{ sonda.longitudine }}</p>
     <p class="card-text"><span class="fw-bolder">Latitudine</span>: {{ sonda.latitudine }}</p>
