@@ -6,6 +6,8 @@ import axios from "axios";
   providedIn: 'root',
 })
 export class BackEndService {
+  
+
   constructor(private http: HttpClient) {
   }
 
@@ -33,6 +35,7 @@ export class BackEndService {
   }
 
   deleteSonda(sondaId: number) {
+
     return axios.delete<any>(`http://localhost:8080/api/sonde/delete/${sondaId}`);
 
   }
