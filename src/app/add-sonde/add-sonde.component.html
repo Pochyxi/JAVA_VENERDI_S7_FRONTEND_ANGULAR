@@ -1,6 +1,7 @@
 <div class="addSonde">
-  <h2 class="text-light text-center">REGISTRA UNA NUOVA SONDA</h2>
+
   <form class="form" [formGroup]="form" (ngSubmit)="registra()">
+    <h2 class="text-light text-center">REGISTRA UNA NUOVA SONDA</h2>
     <mat-form-field class="w-50 mx-auto d-block matInput" appearance="fill">
       <mat-label class="text-light">Nome Sonda</mat-label>
       <input
@@ -97,7 +98,7 @@
       <mat-error>{{ getErrorMessage("longitudine") }}</mat-error>
     </mat-form-field>
     <br />
-    <button mat-raised-button color="primary" class="mt-2 w-100" type="submit">
+    <button mat-raised-button color="primary" class="mt-2 w-50 mx-auto d-block" type="submit">
       Registra sonda
     </button>
   </form>

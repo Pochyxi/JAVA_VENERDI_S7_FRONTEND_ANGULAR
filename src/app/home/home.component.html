@@ -1,6 +1,6 @@
 <div class="home p-3" >
   <h1 class="text-center text-light">LISTA SONDE</h1>
-  <div class="text-light text-center noSonde" *ngIf="!arrOfSonde">
+  <div class="text-light text-center noSonde" *ngIf="arrOfSonde?.length < 1 || !arrOfSonde">
     Nessuna sonda trovata
   </div>
   <div class="d-flex flex-wrap justify-content-start" *ngIf="arrOfSonde">
@@ -8,7 +8,8 @@
       *ngFor="let sonda of arrOfSonde"
       [sonda]="sonda"
       [idUltimaAllerta]="idUltimaAllerta"
-      (shotId)="postMisurazione($event, randomSmoke())"
+      (shotId)="postMisurazioneJson($event, randomSmoke())"
+      (refreshSonde)="getSonde()"
     ></app-sonda-card>
 
   </div>

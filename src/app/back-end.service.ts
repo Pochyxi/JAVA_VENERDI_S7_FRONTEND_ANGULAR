@@ -1,12 +1,12 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import axios from "axios";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class BackEndService {
-  
 
   constructor(private http: HttpClient) {
   }
@@ -34,37 +34,15 @@ export class BackEndService {
     );
   }
 
-  deleteSonda(sondaId: number) {
-
-    return axios.delete<any>(`http://localhost:8080/api/sonde/delete/${sondaId}`);
-
+  postMisurazioneJson(obj: any) {
+    return axios.post<any>(
+      `http://localhost:8080/api/misurazioni/new-json`,
+      {obj}
+    );
   }
 
-  // postMisurazione(sondaId: number, smokeLevel: number) {
-  //   return this.http.post<any>(`http://localhost:8080/api/misurazioni/new`, {
-  //     Headers: {
-  //       'Content-Type': 'application/application.json',
-  //     },
-  //     body: JSON.stringify({
-  //       sonda_id: sondaId,
-  //       smoke_level: smokeLevel,
-  //     }),
-  //   });
-  // }
+  deleteSonda(sondaId: number) {
+    return axios.delete<any>(`http://localhost:8080/api/sonde/delete/${sondaId}`);
+  }
 
-  // postMisurazione(sondaId: number, smokeLevel: number) {
-  //   return axios({
-  //     method: 'post',
-  //     url: 'http://localhost:8080/api/misurazioni/new',
-  //     data: {
-  //       sondaId: sondaId,
-  //       smokeLevel: smokeLevel
-  //     }
-  //   })
-  //     .then((response) => {
-  //       console.log(response);
-  //     }, (error) => {
-  //       console.log(error);
-  //     });
-  // }
 }

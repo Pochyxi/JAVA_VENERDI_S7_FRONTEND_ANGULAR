@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BackEndService} from '../back-end.service';
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -19,19 +20,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.backend$.getSonde().subscribe((sonde) => {
-      if (sonde.length > 0) {
-        this.arrOfSonde = sonde;
-      }
-      console.log(this.arrOfSonde);
-
-      if(!this.arrOfSonde === undefined) {
-        this.getMisurazioni()
-      }
-    });
-
-
-
+    this.getSonde()
 
     //Nel caso si voglia aggiornare continuamente le sonde
     // this.int = setInterval(() => {
@@ -40,6 +29,23 @@ export class HomeComponent implements OnInit {
     //     console.log(this.arrOfSonde);
     //   });
     // }, 5000);
+  }
+
+  getSonde() {
+    console.log("eseguo")
+    this.backend$.getSonde().subscribe((sonde) => {
+      if (sonde.length > 0) {
+        this.arrOfSonde = sonde;
+      } else {
+        this.arrOfSonde = [];
+      }
+      console.log(this.arrOfSonde);
+
+      if(!this.arrOfSonde === undefined || this.arrOfSonde.length > 0) {
+        this.getMisurazioni()
+      }
+
+    });
   }
 
   randomSmoke() {
@@ -62,6 +68,17 @@ export class HomeComponent implements OnInit {
 
   postMisurazione(sondaId: number, smokeLevel: number) {
     this.backend$.postMisurazione(sondaId, smokeLevel).subscribe((r) => {
+      this.getMisurazioni()
+    });
+  }
+
+  postMisurazioneJson(sondaId: number, smokeLevel: number) {
+    let obj = {
+      "sondaId": sondaId,
+      "smokeLevel": smokeLevel
+    }
+
+    this.backend$.postMisurazioneJson(obj).then((r) => {
       this.getMisurazioni()
     });
   }

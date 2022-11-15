@@ -14,6 +14,8 @@ export class SondaCardComponent implements OnInit {
 
   @Output() shotId = new EventEmitter<number>();
 
+  @Output() refreshSonde = new EventEmitter<number>();
+
   numeroMisurazioniSonda: number | undefined
   numeroMisurazioniSondaAlte: number | undefined
 
@@ -68,6 +70,7 @@ export class SondaCardComponent implements OnInit {
   deleteSonda():void {
     this.backend$.deleteSonda(this.sonda.id).then((r) => {
       console.log(r);
+      this.refreshSonde.emit(this.sonda.id);
     });
 
   }
