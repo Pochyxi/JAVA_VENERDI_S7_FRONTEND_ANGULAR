@@ -8,7 +8,7 @@
       *ngFor="let sonda of arrOfSonde"
       [sonda]="sonda"
       [idUltimaAllerta]="idUltimaAllerta"
-      (shotId)="postMisurazioneJson($event, randomSmoke())"
+      (shotId)="postMisurazione($event, randomSmoke())"
       (refreshSonde)="getSonde()"
     ></app-sonda-card>
 
